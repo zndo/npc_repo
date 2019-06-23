@@ -1,0 +1,32 @@
+server:
+  port: 8060
+
+management:
+  security:
+    enabled: false
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    saas-security-auth:
+      path: /uaa/**
+      stripPrefix: false
+      sensitiveHeaders:
+    saas-ms-a:
+      path: /saas-ms-a/**
+      sensitiveHeaders:
+    saas-ms-b:
+      path: /saas-ms-b/**
+      sensitiveHeaders:
